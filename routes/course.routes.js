@@ -1,6 +1,6 @@
 import express from "express";
-import { createCourse, getAllCourses } from "../backend/controllers/course.controller.js";
-import { verifyToken, authorizeRoles } from "../backend/controllers/middlewares/auth.middleware.js";
+import { createCourse, getAllCourses } from "../controllers/course.controller.js";
+import { verifyToken, authorizeRoles } from "../controllers/middlewares/auth.middleware.js";
 
 const router = express.Router();
 
