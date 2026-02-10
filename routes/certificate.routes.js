@@ -1,5 +1,5 @@
 import express from "express";
-import { issueCertificate, verifyCertificate } from "..controllers/certificate.controller.js";
+import { issueCertificate, verifyCertificate } from "../controllers/certificate.controller.js";
 import { verifyToken, authorizeRoles } from "../middlewares/auth.middleware.js";
 
 const router = express.Router();
