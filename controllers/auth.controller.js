@@ -2,10 +2,9 @@ import User from "../models/user.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
+
 export const register = async (req, res) => {
   try {
-    console.log("REGISTER BODY:", req.body); // debug
-
     const { name, email, password } = req.body || {};
 
     if (!name || !email || !password) {
@@ -23,25 +22,34 @@ export const register = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    await User.create({
+    const newUser = await User.create({
       name,
       email,
       password: hashedPassword,
-      role: "admin"
+      role: "admin" // or "student" depending on your logic
     });
 
+    // Always return JSON on success
     return res.status(201).json({
-      message: "User registered successfully"
+      message: "Registration successful!",
+      user: {
+        id: newUser._id,
+        name: newUser.name,
+        email: newUser.email,
+        role: newUser.role
+      }
     });
 
   } catch (error) {
     console.error("REGISTER ERROR:", error);
+
+    // Always return JSON on failure
     return res.status(500).json({
-      message: "Server error"
+      message: "Registration failed. Please try again.",
+      error: error.message
     });
   }
 };
-
 
 export const login = async (req, res) => {
   try {
