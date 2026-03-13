@@ -15,6 +15,6 @@ export const createCourse = async (req, res) => {
 };
 
 export const getAllCourses = async (req, res) => {
-    const courses = await Course.find().populate("admin", "name email");
+    const courses = await Course.find().populate("instructor", "name email");
     res.json(courses);
 };
