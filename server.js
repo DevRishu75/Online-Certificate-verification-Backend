@@ -14,13 +14,14 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// serve frontend files
-app.use(express.static("public"));
+
 
 // API routes
 app.use("/api/auth", authRoutes);
 app.use("/api/courses", courseRoutes);
 app.use("/api/certificates", certificateRoutes);
+// serve frontend files
+app.use(express.static("public"));
 
 // root route (important for Render health check)
 app.get("/", (req, res) => {
